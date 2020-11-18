@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}About
+{% endblock title %}
+{% block body %}
+<link rel="stylesheet" href="../static/other.css">
+<div class="thumb">
+    <h2 class="text-center">
+        Welcome {{request.user}}
+    </h2>
+    <a  style="text-decoration: none; color: white; margin-left: 42%; font-size: 26px;"href="/logout"> You Can logout Here</a>
+    <div class="solo">
+        <ul><br>
+            <p class="text-center">If You Have Any Query About Our Website Than You Can Contact Us </p>
+            <li><a href=" https://wa.me/9879956767"> <img src="../static/whatapp..jpg" alt="whatapp"> AMIT VISHWAKARMA
+                </a>
+               
+                </li> <br>
+
+            <li><a href=" https://wa.me/9686574567"><img src="../static/whatapp..jpg" alt="whatapp"> YASH PINGALE</a>
+            </li> <br>
+            <li><a href=" https://wa.me/8876988733"> <img src="../static/whatapp..jpg" alt="whatapp"> VINAY MEDHEKAR
+                </a><br>
+        </ul>
+        <div class="gama">
+            <h2>This is our location Where You can Come If You Have Any Doubts</h2>
+            <iframe  style="margin-left: 34% ; margin-top: 10px; border: 4px solid grey; border-radius: 10px;"src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.3020991605176!2d72.87624041490518!3d19.05045075772552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c8c7fb7cb41d%3A0xd2376785df725550!2sPadmabhushan%20VasantDada%20Patil%20Pratishthan&#39;s%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1605606063053!5m2!1sen!2sin" width="600" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        </div>
+      
+    </div>
+</div>
+
+{% endblock body %}

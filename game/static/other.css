@@ -1,0 +1,80 @@
+.solo img{
+    width: 35px;
+    height:35px;
+    border:2px solid white;
+    border-radius: 8px;
+    
+}
+.thumb{
+    background-image: url(../static/fast..jpg);
+    height: 100vh;
+    opacity: 0.9;
+}
+
+
+.solo ul li{
+    list-style: none;
+   
+}
+.thumb h2{
+    color: white;
+}
+.active img {
+    opacity: 0.9;
+}
+.solo p{
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.solo ul li a{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.santner{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: auto;
+}
+.card{
+    padding: 5px;
+    margin: 10px;
+}
+.navbar{
+    height: 8vh;
+}
+.aram{
+    background-image: url(../static/contact.jpg);
+    height: 100vh;
+}
+.sam{
+    background-image: url(../static/dark..jpg);
+    height: 100vh;
+}
+.santner .alpha{
+    height: 20vh;
+}
+.bita{
+    margin-top: 30px;
+}
+.sam h2{
+    color: white;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+.aram h2{
+    color: white;
+}
+.width{
+    width: 50%;
+    margin-left: 25%;
+    
+}
+.chetan{
+    background-image: url(../static/dark1.jpg);
+    width:100%;
+    height:100vh
+
+}
