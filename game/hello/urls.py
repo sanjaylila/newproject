@@ -11,14 +11,14 @@ urlpatterns = [
   path('contact',views.contact,name='contact'),
   path('login',views.loginuser,name='loginuser'),
   path('logout',views.logoutuser, name='logoutuser'),
-  path('button1',views.button1),
-  path('button1',views.output,name='game1'),
   path('',views.button1),
-  path('',views.output,name='game1'),
+  path('output1',views.output1,name='game1'),
+  path('button2',views.button2),
+  path('output2',views.output2,name='game2'),
   path('',views.button1),
-  path('',views.output,name='game1'),
-  path('',views.button1),
-  path('',views.output,name='game1')
+  path('output1',views.output1,name='game1'),
+  path('',views.button4),
+  path('output4',views.output4,name='game4')
 
   
 ]

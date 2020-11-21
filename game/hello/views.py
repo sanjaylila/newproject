@@ -8,6 +8,449 @@ from django.contrib.auth import logout,login
 import turtle
 import time
 import random
+word_list=[
+    'wares',
+    'soup',
+    'mount',
+    'extend',
+    'brown',
+    'expert',
+    'tired',
+    'humidity',
+    'backpack',
+    'crust',
+    'dent',
+    'market',
+    'knock',
+    'smite',
+    'windy',
+    'coin',
+    'throw',
+    'silence',
+    'bluff',
+    'downfall',
+    'climb',
+    'lying',
+    'weaver',
+    'snob',
+    'kickoff',
+    'match',
+    'quaker',
+    'foreman',
+    'excite',
+    'thinking',
+    'mend',
+    'allergen',
+    'pruning',
+    'coat',
+    'emerald',
+    'coherent',
+    'manic',
+    'multiple',
+    'square',
+    'funded',
+    'funnel',
+    'sailing',
+    'dream',
+    'mutation',
+    'strict',
+    'mystic',
+    'film',
+    'guide',
+    'strain',
+    'bishop',
+    'settle',
+    'plateau',
+    'emigrate',
+    'marching',
+    'optimal',
+    'medley',
+    'endanger',
+    'wick',
+    'condone',
+    'schema',
+    'rage',
+    'figure',
+    'plague',
+    'aloof',
+    'there',
+    'reusable',
+    'refinery',
+    'suffer',
+    'affirm',
+    'captive',
+    'flipping',
+    'prolong',
+    'main',
+    'coral',
+    'dinner',
+    'rabbit',
+    'chill',
+    'seed',
+    'born',
+    'shampoo',
+    'italian',
+    'giggle',
+    'roost',
+    'palm',
+    'globe',
+    'wise',
+    'grandson',
+    'running',
+    'sunlight',
+    'spending',
+    'crunch',
+    'tangle',
+    'forego',
+    'tailor',
+    'divinity',
+    'probe',
+    'bearded',
+    'premium',
+    'featured',
+    'serve',
+    'borrower',
+    'examine',
+    'legal',
+    'outlive',
+    'unnamed',
+    'unending',
+    'snow',
+    'whisper',
+    'bundle',
+    'bracket',
+    'deny',
+    'blurred',
+    'pentagon',
+    'reformed',
+    'polarity',
+    'jumping',
+    'gain',
+    'laundry',
+    'hobble',
+    'culture',
+    'whittle',
+    'docket',
+    'mayhem',
+    'build',
+    'peel',
+    'board',
+    'keen',
+    'glorious',
+    'singular',
+    'cavalry',
+    'present',
+    'cold',
+    'hook',
+    'salted',
+    'just',
+    'dumpling',
+    'glimmer',
+    'drowning',
+    'admiral',
+    'sketch',
+    'subject',
+    'upright',
+    'sunshine',
+    'slide',
+    'calamity',
+    'gurney',
+    'adult',
+    'adore',
+    'weld',
+    'masking',
+    'print',
+    'wishful',
+    'foyer',
+    'tofu',
+    'machete',
+    'diced',
+    'behemoth',
+    'rout',
+    'midwife',
+    'neglect',
+    'mass',
+    'game',
+    'stocking',
+    'folly',
+    'action',
+    'bubbling',
+    'scented',
+    'sprinter',
+    'bingo',
+    'egyptian',
+    'comedy',
+    'rung',
+    'outdated',
+    'radical',
+    'escalate',
+    'mutter',
+    'desert',
+    'memento',
+    'kayak',
+    'talon',
+    'portion',
+    'affirm',
+    'dashing',
+    'fare',
+    'battle',
+    'pupil',
+    'rite',
+    'smash',
+    'true',
+    'entrance',
+    'counting',
+    'peruse',
+    'dioxide',
+    'hermit',
+    'carving',
+    'backyard',
+    'homeless',
+    'medley',
+    'packet',
+    'tickle',
+    'coming',
+    'leave',
+    'swing',
+    'thicket',
+    'reserve',
+    'murder',
+    'costly',
+    'corduroy',
+    'bump',
+    'oncology',
+    'swatch',
+    'rundown',
+    'steal',
+    'teller',
+    'cable',
+    'oily',
+    'official',
+    'abyss',
+    'schism',
+    'failing',
+    'guru',
+    'trim',
+    'alfalfa',
+    'doubt',
+    'booming',
+    'bruised',
+    'playful',
+    'kicker',
+    'jockey',
+    'handmade',
+    'landfall',
+    'rhythm',
+    'keep',
+    'reassure',
+    'garland',
+    'sauna',
+    'idiom',
+    'fluent',
+    'lope',
+    'gland',
+    'amend',
+    'fashion',
+    'treaty',
+    'standing',
+    'current',
+    'sharpen',
+    'cinder',
+    'idealist',
+    'festive',
+    'frame',
+    'molten',
+    'sill',
+    'glisten',
+    'fearful',
+    'basement',
+    'minutia',
+    'coin',
+    'stick',
+    'featured',
+    'soot',
+    'static',
+    'crazed',
+    'upset',
+    'robotics',
+    'dwarf',
+    'shield',
+    'butler',
+    'stitch',
+    'stub',
+    'sabotage',
+    'parlor',
+    'prompt',
+    'heady',
+    'horn',
+    'bygone',
+    'rework',
+    'painful',
+    'composer',
+    'glance',
+    'acquit',
+    'eagle',
+    'solvent',
+    'backbone',
+    'smart',
+    'atlas',
+    'leap',
+    'danger',
+    'bruise',
+    'seminar',
+    'tinge',
+    'trip',
+    'narrow',
+    'while',
+    'jaguar',
+    'seminary',
+    'command',
+    'cassette',
+    'draw',
+    'anchovy',
+    'scream',
+    'blush',
+    'organic',
+    'applause',
+    'parallel',
+    'trolley',
+    'pathos',
+    'origin',
+    'hang',
+    'pungent',
+    'angular',
+    'stubble',
+    'painted',
+    'forward',
+    'saddle',
+    'muddy',
+    'orchid',
+    'prudence',
+    'disprove',
+    'yiddish',
+    'lobbying',
+    'neuron',
+    'tumor',
+    'haitian',
+    'swift',
+    'mantel',
+    'wardrobe',
+    'consist',
+    'storied',
+    'extreme',
+    'payback',
+    'control',
+    'dummy',
+    'influx',
+    'realtor',
+    'detach',
+    'flake',
+    'consign',
+    'adjunct',
+    'stylized',
+    'weep',
+    'prepare',
+    'pioneer',
+    'tail',
+    'platoon',
+    'exercise',
+    'dummy',
+    'clap',
+    'actor',
+    'spark',
+    'dope',
+    'phrase',
+    'welsh',
+    'wall',
+    'whine',
+    'fickle',
+    'wrong',
+    'stamina',
+    'dazed',
+    'cramp',
+    'filet',
+    'foresee',
+    'seller',
+    'award',
+    'mare',
+    'uncover',
+    'drowning',
+    'ease',
+    'buttery',
+    'luxury',
+    'bigotry',
+    'muddy',
+    'photon',
+    'snow',
+    'oppress',
+    'blessed',
+    'call',
+    'stain',
+    'amber',
+    'rental',
+    'nominee',
+    'township',
+    'adhesive',
+    'lengthy',
+    'swarm',
+    'court',
+    'baguette',
+    'leper',
+    'vital',
+    'push',
+    'digger',
+    'setback',
+    'accused',
+    'taker',
+    'genie',
+    'reverse',
+    'fake',
+    'widowed',
+    'renewed',
+    'goodness',
+    'featured',
+    'curse',
+    'shocked',
+    'shove',
+    'marked',
+    'interact',
+    'mane',
+    'hawk',
+    'kidnap',
+    'noble',
+    'proton',
+    'effort',
+    'patriot',
+    'showcase',
+    'parish',
+    'mosaic',
+    'coil',
+    'aide',
+    'breeder',
+    'concoct',
+    'pathway',
+    'hearing',
+    'bayou',
+    'regimen',
+    'drain',
+    'bereft',
+    'matte',
+    'bill',
+    'medal',
+    'prickly',
+    'sarcasm',
+    'stuffy',
+    'allege',
+    'monopoly',
+    'lighter',
+    'repair',
+    'worship',
+    'vent',
+    'hybrid',
+    'buffet',
+    'lively']
+
+
 # Create your views here.
 def home(request):
     
@@ -15,8 +458,13 @@ def home(request):
           return redirect("/login")
      return render(request,'home.html')
 def button1(request):
-     return render(request,'button1.html')  
-def output(request):
+     return render(request,'home.html')  
+
+
+
+   
+def output1(request):
+
      delay=0.1
      score=0
      high_score=0
@@ -29,6 +477,7 @@ def output(request):
      head.speed(0)
      head.color("white")
      head.shape('square')
+     head.penup()
      head.goto(0,0)
      head.direction="stop"
      food=turtle.Turtle()
@@ -64,9 +513,9 @@ def output(request):
           if head.direction=="up":
                y=head.ycor()
                head.sety(y+20)
-          if head.direction=="up":
+          if head.direction=="down":
                y=head.ycor()
-               head.sety(y+20)
+               head.sety(y-20)
           if head.direction=="left":
                x=head.xcor()
                head.setx(x-20)   
@@ -82,7 +531,7 @@ def output(request):
      wn.onkeypress(godown,"s")
      wn.onkeypress(goleft,"a")
      wn.onkeypress(goright,"d")
-     wn.mainloop()
+    
 
      while True:
           wn.update()
@@ -110,7 +559,8 @@ def output(request):
                new_segment.speed(0)
                new_segment.shape("square")
                new_segment.color("grey")
-               segment.append(new_segment)
+               new_segment.penup()
+               segments.append(new_segment)
                delay-=0.001
                score+=10
                if score>high_score:
@@ -122,11 +572,11 @@ def output(request):
           for index in range(len(segments)-1,0,-1):
                x=segments[index-1].xcor()
                y=segments[index-1].ycor()
-               segments[index].goto(x,y)
+               segments[0].goto(x,y)
           if len(segments)>0:
                x=head.xcor()
                y=head.ycor()
-               segments[index].goto(x,y)
+               segments[0].goto(x,y)
           move()
           for segment in segments:
                if segment.distance(head)<20:
@@ -146,9 +596,227 @@ def output(request):
      
 
           time.sleep(delay)
-          
-     return render(request,'button1.html')
+     wn.mainloop()     
+     return render(request,'home.html')
+def button2(request):
+     return render(request,'button2.html')
+def output2(request):
+ 
+     def get_word():
 
+          word = random.choice(word_list)
+          return word.upper()
+     def play(word):
+
+          word_completion = "_" * len(word)
+          guessed = False
+          guessed_letters = []
+          guessed_words = []
+          tries = 6
+          print("Let's play Hangman!")
+          print(display_hangman(tries))
+          print(word_completion)
+          print("\n")  
+          while not guessed and tries > 0:
+
+               guess = input("Please guess a letter or word: ").upper()   
+               if len(guess) == 1 and guess.isalpha():
+
+                    if guess in guessed_letters:
+                         print("You already guessed the letter", guess)
+                    elif guess not in word:
+                         print(guess, "is not in the word.")
+                         tries -= 1
+                         guessed_letters.append(guess) 
+                    else:
+                         print("Good job,", guess, "is in the word!")
+                         guessed_letters.append(guess)
+                         word_as_list = list(word_completion)
+                         indices = [i for i, letter in enumerate(word) if letter == guess]  
+                         for index in indices:
+                              word_as_list[index] = guess   
+                         word_completion = "".join(word_as_list)
+                         if "_" not in word_completion:  
+                               guessed = True
+               elif len(guess) == len(word) and guess.isalpha():
+                    if guess in guessed_words:
+                         print("You already guessed the word", guess)
+                    elif guess != word:
+                         print(guess, "is not the word.")
+                         tries -= 1
+                         guessed_words.append(guess)
+                    else:
+                         guessed = True
+                         word_completion = word 
+               else:
+                    print("Not a valid guess.")  
+               print(display_hangman(tries))
+               print(word_completion)
+               print("\n")  
+          if guessed:
+               print("Congrats, you guessed the word! You win!")
+          else:
+               print("Sorry, you ran out of tries. The word was " + word + ". Maybe next time!")
+     def display_hangman(tries):
+          stages = [  # final state: head, torso, both arms, and both legs 
+           """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |     / \\
+                   -
+                """,
+                # head, torso, both arms, and one leg
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |     / 
+                   -
+                """,
+                # head, torso, and both arms
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |      
+                   -
+                """,
+                # head, torso, and one arm
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|
+                   |      |
+                   |     
+                   -
+                """,
+                # head and torso
+                """
+                   --------
+                   |      |
+                   |      O
+                   |      |
+                   |      |
+                   |     
+                   -
+                """,
+                # head
+                """
+                   --------
+                   |      |
+                   |      O
+                   |    
+                   |      
+                   |     
+                   -
+                """,
+                # initial empty state
+                """
+                   --------
+                   |      |
+                   |      
+                   |    
+                   |      
+                   |     
+                   -
+                """
+          ] 
+          return stages[tries]
+     def main():
+          word = get_word()
+          play(word)
+          while input("Play Again? (Y/N) ").upper() == "Y":
+               word = get_word()
+               play(word)
+
+     if __name__ == "__main__":
+          main() 
+     
+     return render(request,'button2.html')
+   
+
+def button4(request):
+      return render(request,'home.html')
+def output4(request):
+     comp_wins=0
+     player_wins=0
+     def choose_option():
+          user_choice=input("choose Rock,Paper or Scissor:")
+          if user_choice in ["Rock","rock","r","R"]:
+               user_choice="r"
+          elif user_choice in ["Paper","paper","p","P"]:
+               user_choice="p"    
+          elif user_choice in ["Scissor","scissor","s","S"]:
+               user_choice="s"    
+          else:
+               print("I don't understand ,try again.")  
+               choose_option() 
+          return user_choice
+     def computer_option():
+          comp_choice=random.randint(1,3)
+          if comp_choice==1:
+               comp_choice="r" 
+          elif comp_choice==2:
+               comp_choice="p"  
+          else:
+                
+                comp_choice="s"   
+          return comp_choice
+     while True:
+          print("")
+          user_choice=choose_option()
+          comp_choice=computer_option()
+          print("")
+          if user_choice=="r":
+               if comp_choice=="r":
+                    print("you chose rock and computer chose rock.you tied")
+               elif comp_choice=="p":
+                    print("you chose rock and computer chose paper.you lose.")   
+                    comp_wins +=1 
+               elif comp_choice=="s":
+                    print("you chose rock and computer chose scissor.you win.")   
+                    player_wins +=1        
+          elif user_choice=="p":
+               if comp_choice=="r":
+                    print("you chose paper and computer chose rock.you win")
+                    player_wins +=1  
+               elif comp_choice=="p":
+                    print("you chose paper and computer chose paper.you tied.")   
+                    
+               elif comp_choice=="s":
+                    print("you chose paper and computer chose scissor.you lose.")   
+                    comp_wins +=1       
+          elif user_choice=="s":
+               if comp_choice=="r":
+                    print("you chose scissor and computer chose rock.you lose")
+                    comp_wins +=1  
+               elif comp_choice=="p":
+                    print("you chose scissor and computer chose paper.you win")   
+                    player_wins +=1
+               elif comp_choice=="s":
+                    print("you chose scissor and computer chose scissor.you tied")   
+          print("")
+          print("player wins:"+str(player_wins))
+          print("computer wins:"+str(comp_wins))
+          print("")
+          user_choice=input("Do you wnat to play again? (y/n)")
+          if user_choice in ["Yes","yes","y","Y"]:
+               pass                
+          elif user_choice in ["n","N"," NO","no"]:
+               break
+          else:
+               break
+
+
+     return render(request,'home.html')              
 def about(request):
     return render(request,'about.html')
 
