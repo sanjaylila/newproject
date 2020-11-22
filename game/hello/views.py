@@ -8,6 +8,7 @@ from django.contrib.auth import logout,login
 import turtle
 import time
 import random
+import tkinter as tk
 word_list=[
     'wares',
     'soup',
@@ -601,220 +602,282 @@ def output1(request):
 def button2(request):
      return render(request,'button2.html')
 def output2(request):
- 
-     def get_word():
+     import turtle
+     import random
+     # Set up the screen
+     wn = turtle.Screen()
+     wn.title("2048 by @TokyoEdTech")
+     wn.bgcolor("black")
+     wn.setup(width=450, height=400)
+     wn.tracer(0)
 
-          word = random.choice(word_list)
-          return word.upper()
-     def play(word):
+     # Score
+     score = 0
 
-          word_completion = "_" * len(word)
-          guessed = False
-          guessed_letters = []
-          guessed_words = []
-          tries = 6
-          print("Let's play Hangman!")
-          print(display_hangman(tries))
-          print(word_completion)
-          print("\n")  
-          while not guessed and tries > 0:
+     # Grid list
 
-               guess = input("Please guess a letter or word: ").upper()   
-               if len(guess) == 1 and guess.isalpha():
+     grid = [
+             [0, 0, 0, 0],
+             [0, 0, 0, 0],
+             [0, 0, 0, 0],
+             [0, 0, 0, 0]
+             ]
 
-                    if guess in guessed_letters:
-                         print("You already guessed the letter", guess)
-                    elif guess not in word:
-                         print(guess, "is not in the word.")
-                         tries -= 1
-                         guessed_letters.append(guess) 
+     grid_merged = [
+                   [False, False, False, False],
+                   [False, False, False, False],
+                   [False, False, False, False],
+                   [False, False, False, False]
+                   ]
+     # Pen
+     pen.speed(0)
+     pen.shape("square")
+     pen.color("white")
+     pen.penup()
+     pen.hideturtle()
+     pen.turtlesize(stretch_wid=2, stretch_len=2, outline=2)
+     pen.goto(0, 260)
+     def draw_grid():
+
+          colors = {
+               0: "white",
+               2: "yellow",
+               4: "orange",
+               8: "pink",
+               16: "red",
+               32: "light green",
+               64: "green",
+               128: "light purple",
+               256: "purple",
+               512: "gold",
+               1024: "silver",
+               2048: "black"
+          }
+          # Top -100, 100
+          grid_y = 0
+          y = 120
+          # Draw the grid
+          for row in grid:
+               grid_x = 0
+               x = -120
+               y -= 45
+               for column in row:
+                    x += 45
+                    pen.goto(x, y)
+            
+                    # Set the color based on the value
+                    value = grid[grid_y][grid_x]
+                    color = colors[value]
+
+                    pen.color(color)
+                    pen.stamp()
+
+                    pen.color("blue")
+                    if column == 0:
+                         number = ""
                     else:
-                         print("Good job,", guess, "is in the word!")
-                         guessed_letters.append(guess)
-                         word_as_list = list(word_completion)
-                         indices = [i for i, letter in enumerate(word) if letter == guess]  
-                         for index in indices:
-                              word_as_list[index] = guess   
-                         word_completion = "".join(word_as_list)
-                         if "_" not in word_completion:  
-                               guessed = True
-               elif len(guess) == len(word) and guess.isalpha():
-                    if guess in guessed_words:
-                         print("You already guessed the word", guess)
-                    elif guess != word:
-                         print(guess, "is not the word.")
-                         tries -= 1
-                         guessed_words.append(guess)
-                    else:
-                         guessed = True
-                         word_completion = word 
-               else:
-                    print("Not a valid guess.")  
-               print(display_hangman(tries))
-               print(word_completion)
-               print("\n")  
-          if guessed:
-               print("Congrats, you guessed the word! You win!")
-          else:
-               print("Sorry, you ran out of tries. The word was " + word + ". Maybe next time!")
-     def display_hangman(tries):
-          stages = [  # final state: head, torso, both arms, and both legs 
-           """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|/
-                   |      |
-                   |     / \\
-                   -
-                """,
-                # head, torso, both arms, and one leg
-                """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|/
-                   |      |
-                   |     / 
-                   -
-                """,
-                # head, torso, and both arms
-                """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|/
-                   |      |
-                   |      
-                   -
-                """,
-                # head, torso, and one arm
-                """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|
-                   |      |
-                   |     
-                   -
-                """,
-                # head and torso
-                """
-                   --------
-                   |      |
-                   |      O
-                   |      |
-                   |      |
-                   |     
-                   -
-                """,
-                # head
-                """
-                   --------
-                   |      |
-                   |      O
-                   |    
-                   |      
-                   |     
-                   -
-                """,
-                # initial empty state
-                """
-                   --------
-                   |      |
-                   |      
-                   |    
-                   |      
-                   |     
-                   -
-                """
+                         number = str(column)
+
+                    pen.sety(pen.ycor() - 10)
+                    pen.write(number, align="center", font=("Courier", 14, "bold"))
+                    pen.sety(pen.ycor() + 10)
+
+                    grid_x += 1
+               grid_y += 1     
+     def add_random():
+
+          added = False
+          while not added:
+               x = random.randint(0, 3)
+               y = random.randint(0, 3)
+
+               value = random.choice([2, 4])
+
+               if grid[y][x] == 0:
+                    grid[y][x] = value
+                    added = True
+     def up():
+          # Go through row by row
+          # Start with row 1 (note this is the index)
+          for _ in range(4):
+               for y in range(1, 4):
+                    for x in range(0, 4):
+                         # Empty
+                         if grid[y-1][x] == 0:
+                              grid[y-1][x] = grid[y][x]
+                              grid[y][x] = 0
+                              x -= 1
+                              continue
+                         # Same
+                         if grid[y-1][x] == grid[y][x] and not grid_merged[y-1][x]:
+                              grid[y-1][x] = grid[y][x] * 2
+                              grid_merged[y-1][x] = True
+                              grid[y][x] = 0
+                              x -= 1
+                              continue
+          reset_grid_merged()
+
+          print("UP")
+          add_random()
+          draw_grid()
+     def down():
+          # Go through row by row
+          # Start with row 1 (note this is the index)  
+          for _ in range(4):
+               for y in range(2, -1, -1):
+                    for x in range(0, 4):
+                         # Empty
+                         if grid[y+1][x] == 0:
+                              grid[y+1][x] = grid[y][x]
+                              grid[y][x] = 0
+                              x -= 1
+                              continue 
+                         # Same
+                         if grid[y+1][x] == grid[y][x] and not grid_merged[y+1][x]:
+                              grid[y+1][x] = grid[y][x] * 2
+                              grid_merged[y+1][x] = True
+                              grid[y][x] = 0
+                              x -= 1
+                              continue 
+          reset_grid_merged()
+
+          print("DOWN")
+          add_random()
+          
+          draw_grid()
+     def reset_grid_merged():
+          global grid_merged
+          grid_merged = [
+               [False, False, False, False],
+               [False, False, False, False],
+               [False, False, False, False],
+               [False, False, False, False]
           ] 
-          return stages[tries]
-     def main():
-          word = get_word()
-          play(word)
-          while input("Play Again? (Y/N) ").upper() == "Y":
-               word = get_word()
-               play(word)
+     def left():
+          pass
+          draw_grid()  
+     def right():
+          pass
+          draw_grid()
 
-     if __name__ == "__main__":
-          main() 
-     
+     draw_grid()  
+     # Keyboard bindings
+     wn.listen()
+     wn.onkeypress(left, "Left")
+     wn.onkeypress(right, "Right")
+     wn.onkeypress(up, "Up")
+     wn.onkeypress(down, "Down")
+
+     wn.mainloop()                     
      return render(request,'button2.html')
    
-
+def button3(request):
+     return render(request,'button2.html')
+     
 def button4(request):
       return render(request,'home.html')
 def output4(request):
-     comp_wins=0
-     player_wins=0
-     def choose_option():
-          user_choice=input("choose Rock,Paper or Scissor:")
-          if user_choice in ["Rock","rock","r","R"]:
-               user_choice="r"
-          elif user_choice in ["Paper","paper","p","P"]:
-               user_choice="p"    
-          elif user_choice in ["Scissor","scissor","s","S"]:
-               user_choice="s"    
-          else:
-               print("I don't understand ,try again.")  
-               choose_option() 
-          return user_choice
-     def computer_option():
-          comp_choice=random.randint(1,3)
-          if comp_choice==1:
-               comp_choice="r" 
-          elif comp_choice==2:
-               comp_choice="p"  
-          else:
-                
-                comp_choice="s"   
-          return comp_choice
-     while True:
-          print("")
-          user_choice=choose_option()
-          comp_choice=computer_option()
-          print("")
-          if user_choice=="r":
-               if comp_choice=="r":
-                    print("you chose rock and computer chose rock.you tied")
-               elif comp_choice=="p":
-                    print("you chose rock and computer chose paper.you lose.")   
-                    comp_wins +=1 
-               elif comp_choice=="s":
-                    print("you chose rock and computer chose scissor.you win.")   
-                    player_wins +=1        
-          elif user_choice=="p":
-               if comp_choice=="r":
-                    print("you chose paper and computer chose rock.you win")
-                    player_wins +=1  
-               elif comp_choice=="p":
-                    print("you chose paper and computer chose paper.you tied.")   
-                    
-               elif comp_choice=="s":
-                    print("you chose paper and computer chose scissor.you lose.")   
-                    comp_wins +=1       
-          elif user_choice=="s":
-               if comp_choice=="r":
-                    print("you chose scissor and computer chose rock.you lose")
-                    comp_wins +=1  
-               elif comp_choice=="p":
-                    print("you chose scissor and computer chose paper.you win")   
-                    player_wins +=1
-               elif comp_choice=="s":
-                    print("you chose scissor and computer chose scissor.you tied")   
-          print("")
-          print("player wins:"+str(player_wins))
-          print("computer wins:"+str(comp_wins))
-          print("")
-          user_choice=input("Do you wnat to play again? (y/n)")
-          if user_choice in ["Yes","yes","y","Y"]:
-               pass                
-          elif user_choice in ["n","N"," NO","no"]:
-               break
-          else:
-               break
+     wn = turtle.Screen()
+     wn.title("Dinosaur Game by @AYV")
+     wn.bgcolor("black")
+     wn.setup(height=320, width=800)
+     wn.bgpic("../static/background.gif")
+     wn.tracer(0)
 
+     wn.register_shape("dinosaur.gif")
+     wn.register_shape("cactus_small.gif")
+     LINE_HEIGHT = -40
+
+     pen = turtle.Turtle()
+     pen.speed(0)
+     pen.pensize(3)
+     pen.shape("square")
+     pen.color("white")
+     pen.penup()
+
+     # Draw line
+     pen.goto(-400, LINE_HEIGHT)
+     pen.pendown()
+     pen.goto(400, LINE_HEIGHT)
+     pen.penup()
+
+     jumper = turtle.Turtle()
+     jumper.speed(0)
+     jumper.shape("dinosaur.gif")
+     jumper.color("green")
+     jumper.penup()
+     jumper.dy = 0
+     jumper.dx = 0
+     jumper.state = "ready"
+     jumper.height = 50
+     jumper.width = 40
+     jumper.goto(-200, LINE_HEIGHT + jumper.height/2)
+
+     gravity = -0.8
+
+     obstacle = turtle.Turtle()
+     obstacle.speed(0)
+     obstacle.shape("cactus_small.gif")
+     obstacle.color("red")
+     obstacle.penup()
+     obstacle.dx = -3
+     obstacle.height = 30
+     obstacle.width = 17
+     obstacle.goto(200, LINE_HEIGHT + obstacle.height/2)
+     def jump():
+          if jumper.state == "ready":
+               jumper.dy = 12
+               jumper.state = "jumping"
+    
+     wn.listen()
+     wn.onkeypress(jump, "space")
+     while True:
+    # Check for landing
+          if jumper.ycor() < LINE_HEIGHT + jumper.height/2:
+               jumper.sety(LINE_HEIGHT + jumper.height/2)
+               jumper.dy = 0
+               jumper.state = "ready"
+
+     if jumper.ycor() != LINE_HEIGHT + jumper.height/2 and jumper.state == "jumping":
+
+
+         # Gravity (Affects dy)
+          jumper.dy += gravity
+     # Add dy to y
+          y=jumper.ycor()
+          y += jumper.dy
+          jumper.sety(y)
+    
+     # Move the obstacle
+          x = obstacle.xcor()
+          x += obstacle.dx
+          obstacle.setx(x)
+    
+     # Check for off the screen
+     if obstacle.xcor() < -400:
+               x = random.randint(400, 600)
+               obstacle.setx(x)
+               obstacle.dx *= 1.05
+               print(obstacle.dx)
+     # Check for collision
+               obstacle_left = obstacle.xcor() - obstacle.width/2
+               obstacle_right = obstacle.xcor() + obstacle.width/2
+               obstacle_top = obstacle.ycor() + obstacle.height/2
+    
+               jumper_left = jumper.xcor() - jumper.width/2
+               jumper_right = jumper.xcor() + jumper.width/2
+               jumper_bottom = jumper.ycor() - jumper.height/2
+     # 3 Conditions
+     if(obstacle_left > jumper_left and obstacle_left < jumper_right and obstacle_top > jumper_bottom):
+               print("GAME OVER")
+               time.sleep(3)
+               obstacle.goto(450, LINE_HEIGHT + obstacle.height/2)
+               obstacle.dx = -3
+     if(obstacle_right > jumper_left and obstacle_right < jumper_right and obstacle_top > jumper_bottom):
+               print("GAME OVER")
+               obstacle.goto(450, LINE_HEIGHT + obstacle.height/2)
+               obstacle.dx = -3
+               wn.update()
 
      return render(request,'home.html')              
 def about(request):
