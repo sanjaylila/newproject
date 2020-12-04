@@ -13,10 +13,10 @@ urlpatterns = [
   path('logout',views.logoutuser, name='logoutuser'),
   path('',views.button1),
   path('output1',views.output1,name='game1'),
-  path('button2',views.button2),
+  path('',views.button2),
   path('output2',views.output2,name='game2'),
   path('',views.button1),
-  path('output1',views.output1,name='game1'),
+  path('output3',views.output1,name='game3'),
   path('',views.button4),
   path('output4',views.output4,name='game4')
 

@@ -8,7 +8,8 @@ from django.contrib.auth import logout,login
 import turtle
 import time
 import random
-import tkinter as tk
+
+from django.templatetags.static import static
 word_list=[
     'wares',
     'soup',
@@ -600,286 +601,22 @@ def output1(request):
      wn.mainloop()     
      return render(request,'home.html')
 def button2(request):
+     
+
      return render(request,'button2.html')
 def output2(request):
-     import turtle
-     import random
-     # Set up the screen
-     wn = turtle.Screen()
-     wn.title("2048 by @TokyoEdTech")
-     wn.bgcolor("black")
-     wn.setup(width=450, height=400)
-     wn.tracer(0)
 
-     # Score
-     score = 0
-
-     # Grid list
-
-     grid = [
-             [0, 0, 0, 0],
-             [0, 0, 0, 0],
-             [0, 0, 0, 0],
-             [0, 0, 0, 0]
-             ]
-
-     grid_merged = [
-                   [False, False, False, False],
-                   [False, False, False, False],
-                   [False, False, False, False],
-                   [False, False, False, False]
-                   ]
-     # Pen
-     pen.speed(0)
-     pen.shape("square")
-     pen.color("white")
-     pen.penup()
-     pen.hideturtle()
-     pen.turtlesize(stretch_wid=2, stretch_len=2, outline=2)
-     pen.goto(0, 260)
-     def draw_grid():
-
-          colors = {
-               0: "white",
-               2: "yellow",
-               4: "orange",
-               8: "pink",
-               16: "red",
-               32: "light green",
-               64: "green",
-               128: "light purple",
-               256: "purple",
-               512: "gold",
-               1024: "silver",
-               2048: "black"
-          }
-          # Top -100, 100
-          grid_y = 0
-          y = 120
-          # Draw the grid
-          for row in grid:
-               grid_x = 0
-               x = -120
-               y -= 45
-               for column in row:
-                    x += 45
-                    pen.goto(x, y)
-            
-                    # Set the color based on the value
-                    value = grid[grid_y][grid_x]
-                    color = colors[value]
-
-                    pen.color(color)
-                    pen.stamp()
-
-                    pen.color("blue")
-                    if column == 0:
-                         number = ""
-                    else:
-                         number = str(column)
-
-                    pen.sety(pen.ycor() - 10)
-                    pen.write(number, align="center", font=("Courier", 14, "bold"))
-                    pen.sety(pen.ycor() + 10)
-
-                    grid_x += 1
-               grid_y += 1     
-     def add_random():
-
-          added = False
-          while not added:
-               x = random.randint(0, 3)
-               y = random.randint(0, 3)
-
-               value = random.choice([2, 4])
-
-               if grid[y][x] == 0:
-                    grid[y][x] = value
-                    added = True
-     def up():
-          # Go through row by row
-          # Start with row 1 (note this is the index)
-          for _ in range(4):
-               for y in range(1, 4):
-                    for x in range(0, 4):
-                         # Empty
-                         if grid[y-1][x] == 0:
-                              grid[y-1][x] = grid[y][x]
-                              grid[y][x] = 0
-                              x -= 1
-                              continue
-                         # Same
-                         if grid[y-1][x] == grid[y][x] and not grid_merged[y-1][x]:
-                              grid[y-1][x] = grid[y][x] * 2
-                              grid_merged[y-1][x] = True
-                              grid[y][x] = 0
-                              x -= 1
-                              continue
-          reset_grid_merged()
-
-          print("UP")
-          add_random()
-          draw_grid()
-     def down():
-          # Go through row by row
-          # Start with row 1 (note this is the index)  
-          for _ in range(4):
-               for y in range(2, -1, -1):
-                    for x in range(0, 4):
-                         # Empty
-                         if grid[y+1][x] == 0:
-                              grid[y+1][x] = grid[y][x]
-                              grid[y][x] = 0
-                              x -= 1
-                              continue 
-                         # Same
-                         if grid[y+1][x] == grid[y][x] and not grid_merged[y+1][x]:
-                              grid[y+1][x] = grid[y][x] * 2
-                              grid_merged[y+1][x] = True
-                              grid[y][x] = 0
-                              x -= 1
-                              continue 
-          reset_grid_merged()
-
-          print("DOWN")
-          add_random()
-          
-          draw_grid()
-     def reset_grid_merged():
-          global grid_merged
-          grid_merged = [
-               [False, False, False, False],
-               [False, False, False, False],
-               [False, False, False, False],
-               [False, False, False, False]
-          ] 
-     def left():
-          pass
-          draw_grid()  
-     def right():
-          pass
-          draw_grid()
-
-     draw_grid()  
-     # Keyboard bindings
-     wn.listen()
-     wn.onkeypress(left, "Left")
-     wn.onkeypress(right, "Right")
-     wn.onkeypress(up, "Up")
-     wn.onkeypress(down, "Down")
-
-     wn.mainloop()                     
-     return render(request,'button2.html')
-   
+    return render(request,'home.html')
 def button3(request):
      return render(request,'button2.html')
-     
+def output3(request):
+    return render(request,'home.html')
 def button4(request):
       return render(request,'home.html')
 def output4(request):
-     wn = turtle.Screen()
-     wn.title("Dinosaur Game by @AYV")
-     wn.bgcolor("black")
-     wn.setup(height=320, width=800)
-     wn.bgpic("../static/background.gif")
-     wn.tracer(0)
-
-     wn.register_shape("dinosaur.gif")
-     wn.register_shape("cactus_small.gif")
-     LINE_HEIGHT = -40
-
-     pen = turtle.Turtle()
-     pen.speed(0)
-     pen.pensize(3)
-     pen.shape("square")
-     pen.color("white")
-     pen.penup()
-
-     # Draw line
-     pen.goto(-400, LINE_HEIGHT)
-     pen.pendown()
-     pen.goto(400, LINE_HEIGHT)
-     pen.penup()
-
-     jumper = turtle.Turtle()
-     jumper.speed(0)
-     jumper.shape("dinosaur.gif")
-     jumper.color("green")
-     jumper.penup()
-     jumper.dy = 0
-     jumper.dx = 0
-     jumper.state = "ready"
-     jumper.height = 50
-     jumper.width = 40
-     jumper.goto(-200, LINE_HEIGHT + jumper.height/2)
-
-     gravity = -0.8
-
-     obstacle = turtle.Turtle()
-     obstacle.speed(0)
-     obstacle.shape("cactus_small.gif")
-     obstacle.color("red")
-     obstacle.penup()
-     obstacle.dx = -3
-     obstacle.height = 30
-     obstacle.width = 17
-     obstacle.goto(200, LINE_HEIGHT + obstacle.height/2)
-     def jump():
-          if jumper.state == "ready":
-               jumper.dy = 12
-               jumper.state = "jumping"
-    
-     wn.listen()
-     wn.onkeypress(jump, "space")
-     while True:
-    # Check for landing
-          if jumper.ycor() < LINE_HEIGHT + jumper.height/2:
-               jumper.sety(LINE_HEIGHT + jumper.height/2)
-               jumper.dy = 0
-               jumper.state = "ready"
-
-     if jumper.ycor() != LINE_HEIGHT + jumper.height/2 and jumper.state == "jumping":
-
-
-         # Gravity (Affects dy)
-          jumper.dy += gravity
-     # Add dy to y
-          y=jumper.ycor()
-          y += jumper.dy
-          jumper.sety(y)
-    
-     # Move the obstacle
-          x = obstacle.xcor()
-          x += obstacle.dx
-          obstacle.setx(x)
-    
-     # Check for off the screen
-     if obstacle.xcor() < -400:
-               x = random.randint(400, 600)
-               obstacle.setx(x)
-               obstacle.dx *= 1.05
-               print(obstacle.dx)
-     # Check for collision
-               obstacle_left = obstacle.xcor() - obstacle.width/2
-               obstacle_right = obstacle.xcor() + obstacle.width/2
-               obstacle_top = obstacle.ycor() + obstacle.height/2
-    
-               jumper_left = jumper.xcor() - jumper.width/2
-               jumper_right = jumper.xcor() + jumper.width/2
-               jumper_bottom = jumper.ycor() - jumper.height/2
-     # 3 Conditions
-     if(obstacle_left > jumper_left and obstacle_left < jumper_right and obstacle_top > jumper_bottom):
-               print("GAME OVER")
-               time.sleep(3)
-               obstacle.goto(450, LINE_HEIGHT + obstacle.height/2)
-               obstacle.dx = -3
-     if(obstacle_right > jumper_left and obstacle_right < jumper_right and obstacle_top > jumper_bottom):
-               print("GAME OVER")
-               obstacle.goto(450, LINE_HEIGHT + obstacle.height/2)
-               obstacle.dx = -3
-               wn.update()
-
-     return render(request,'home.html')              
+     
+   
+     return render(request,'home.html')         
 def about(request):
     return render(request,'about.html')
 
